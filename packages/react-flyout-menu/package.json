@@ -1,6 +1,6 @@
 {
   "name": "react-flyout-menu",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A flyout component",
   "main": "lib/flyoutMenu.js",
   "module": "lib/flyoutMenu.es.js",
