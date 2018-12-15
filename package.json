@@ -1,0 +1,15 @@
+{
+  "name": "root",
+  "private": true,
+  "scripts": {
+    "start": "node start.js",
+    "deployExample": "node deployExample.js"
+  },
+  "devDependencies": {
+    "lerna": "^3.5.1"
+  },
+  "dependencies": {
+    "gh-pages": "^2.0.1",
+    "shelljs": "^0.8.3"
+  }
+}

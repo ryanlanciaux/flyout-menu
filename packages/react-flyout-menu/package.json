@@ -1,0 +1,29 @@
+{
+  "name": "react-flyout-menu",
+  "version": "1.0.0",
+  "description": "A flyout component",
+  "main": "lib/flyoutMenu.js",
+  "module": "lib/flyoutMenu.es.js",
+  "scripts": {
+    "clean": "rm -rf lib",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "rollup -c --watch",
+    "build": "rollup -c",
+    "prepublish": "yarn clean && yarn build"
+  },
+  "author": "Ryan Lanciaux",
+  "license": "MIT",
+  "peerDependencies": {
+    "prop-types": "^15.6.2",
+    "react": "^16.6.3",
+    "styled-components": "^4.1.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/plugin-proposal-class-properties": "^7.2.1",
+    "@babel/preset-env": "^7.2.0",
+    "@babel/preset-react": "^7.0.0",
+    "rollup": "^0.67.4",
+    "rollup-plugin-babel": "^4.0.3"
+  }
+}
