@@ -37476,7 +37476,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  position: absolute;\n  right: calc(-1 * ", ");\n  top: 0;\n  height: 100%;\n  overflow-y: scroll;\n  overflow-x: visible;\n  transition: right 0.3s ease, box-shadow 0.3s ease;\n  z-index: 999;\n  width: ", ";\n  background: #1a1a1a;\n\n  & ul {\n    list-style: none;\n    margin: 0;\n    padding: 2.5em 0 0;\n    min-height: 100%;\n    width: 100%;\n  }\n\n  & a {\n    display: block;\n    padding: 0.75em 15px;\n    line-height: 1em;\n    font-size: 1em;\n    color: #fff;\n    text-decoration: none;\n  }\n\n  & li:first-child a {\n    border-top: 1px solid #383838;\n  }\n\n  & a:hover,\n  & a:focus {\n    background: #333;\n    text-decoration: underline;\n  }\n\n  & .menu-close {\n    align-self: center;\n  }\n\n  &:target,\n  &[aria-expanded=\"true\"] {\n    right: 0;\n    outline: none;\n    box-shadow: 3px 0 12px rgba(0, 0, 0, 0.25);\n  }\n\n  &:target .menu-close,\n  &[aria-expanded=\"true\"] .menu-close {\n    z-index: 1001;\n  }\n\n  &:target ul,\n  &[aria-expanded=\"true\"] ul {\n    position: relative;\n    z-index: 1000;\n  }\n\n  &:target + .backdrop,\n  &[aria-expanded=\"true\"] + .backdrop {\n    position: absolute;\n    display: block;\n    content: \"\";\n    right: 0;\n    top: 0;\n    width: 100%;\n    height: 100%;\n    z-index: 998;\n    background: #000;\n    background: rgba(0, 0, 0, 0.85);\n    cursor: default;\n  }\n\n  @supports (position: fixed) {\n    &,\n    &:target + .backdrop,\n    &[aria-expanded=\"true\"] + .backdrop {\n      position: fixed;\n    }\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  position: absolute;\n  right: calc(-1 * ", ");\n  top: 0;\n  height: 100%;\n  overflow-y: scroll;\n  overflow-x: visible;\n  transition: right 0.3s ease, box-shadow 0.3s ease;\n  z-index: 999;\n  width: ", ";\n  background: #1a1a1a;\n\n  & ul {\n    list-style: none;\n    margin: 0;\n    padding: 2.5em 0 0;\n    width: 100%;\n  }\n\n  & a {\n    display: block;\n    padding: 0.75em 15px;\n    line-height: 1em;\n    font-size: 1em;\n    color: #fff;\n    text-decoration: none;\n  }\n\n  & li:first-child a {\n    border-top: 1px solid #383838;\n  }\n\n  & a:hover,\n  & a:focus {\n    background: #333;\n    text-decoration: underline;\n  }\n\n  & .menu-close {\n    align-self: center;\n  }\n\n  &:target,\n  &[aria-expanded=\"true\"] {\n    right: 0;\n    outline: none;\n    box-shadow: 3px 0 12px rgba(0, 0, 0, 0.25);\n  }\n\n  &:target .menu-close,\n  &[aria-expanded=\"true\"] .menu-close {\n    z-index: 1001;\n  }\n\n  &:target ul,\n  &[aria-expanded=\"true\"] ul {\n    position: relative;\n    z-index: 1000;\n  }\n\n  &:target + .backdrop,\n  &[aria-expanded=\"true\"] + .backdrop {\n    position: absolute;\n    display: block;\n    content: \"\";\n    right: 0;\n    top: 0;\n    width: 100%;\n    height: 100%;\n    z-index: 998;\n    background: #000;\n    background: rgba(0, 0, 0, 0.85);\n    cursor: default;\n  }\n\n  @supports (position: fixed) {\n    &,\n    &:target + .backdrop,\n    &[aria-expanded=\"true\"] + .backdrop {\n      position: fixed;\n    }\n  }\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -37486,7 +37486,7 @@ function _templateObject3() {
 }
 
 function _templateObject2() {
-  var data = _taggedTemplateLiteral(["\n  display: inline-block;\n  padding: 0.75em 15px;\n  line-height: 1em;\n  font-size: 1em;\n  color: #333;\n\n  &:hover,\n  &:focus {\n    color: #c00;\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  display: inline-block;\n  padding: 0.75em 15px;\n  line-height: 1em;\n  font-size: 1em;\n  color: #333;\n\n  &:hover {\n    color: #555;\n  }\n  &:focus {\n    color: #c00;\n  }\n"]);
 
   _templateObject2 = function _templateObject2() {
     return data;
@@ -37629,26 +37629,64 @@ var ReaderHidden = function ReaderHidden(_ref2) {
   }, children);
 };
 
-var HamburgerButton = _react.default.forwardRef(function (_ref3, ref) {
-  var closeElement = _ref3.closeElement;
-  return _react.default.createElement(ToggleButton, {
-    href: "#main-menu",
-    className: "menu-toggle",
-    role: "button",
-    id: "main-menu-toggle",
-    "aria-expanded": "false",
-    "aria-controls": "main-menu",
-    "aria-label": "Open main menu",
-    ref: ref,
-    onClick: function onClick() {
-      // TODO: Revisit this. Basically saying wait til the
-      // menu is visible and focus it
-      setTimeout(function () {
-        return closeElement.current.focus();
-      }, 300);
+var HamburgerButton =
+/*#__PURE__*/
+function (_React$Component3) {
+  _inherits(HamburgerButton, _React$Component3);
+
+  function HamburgerButton() {
+    var _getPrototypeOf3;
+
+    var _this3;
+
+    _classCallCheck(this, HamburgerButton);
+
+    for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      args[_key2] = arguments[_key2];
     }
-  }, _react.default.createElement(ReaderHidden, null, _react.default.createElement(Bars, null)), _react.default.createElement(VisuallyHidden, null, "Open Menu"));
-});
+
+    _this3 = _possibleConstructorReturn(this, (_getPrototypeOf3 = _getPrototypeOf(HamburgerButton)).call.apply(_getPrototypeOf3, [this].concat(args)));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this3)), "toggle", _react.default.createRef());
+
+    return _this3;
+  }
+
+  _createClass(HamburgerButton, [{
+    key: "componentDidMount",
+    value: function componentDidMount() {
+      var setToggleElement = this.props.setToggleElement;
+      setToggleElement(this.toggle);
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      var _this$props = this.props,
+          closeElement = _this$props.closeElement,
+          _onClick = _this$props.onClick;
+      return _react.default.createElement(ToggleButton, {
+        href: "#main-menu",
+        className: "menu-toggle",
+        role: "button",
+        id: "main-menu-toggle",
+        "aria-expanded": "false",
+        "aria-controls": "main-menu",
+        "aria-label": "Open main menu",
+        ref: this.toggle,
+        onClick: function onClick() {
+          _onClick && _onClick(); // TODO: Revisit this. Basically saying wait til the
+          // menu is visible and focus it
+
+          setTimeout(function () {
+            return closeElement.current.focus();
+          }, 300);
+        }
+      }, _react.default.createElement(ReaderHidden, null, _react.default.createElement(Bars, null)), _react.default.createElement(VisuallyHidden, null, "Open Menu"));
+    }
+  }]);
+
+  return HamburgerButton;
+}(_react.default.Component);
 
 exports.HamburgerButton = HamburgerButton;
 
@@ -37667,27 +37705,48 @@ exports.MenuPositions = MenuPositions;
 
 var Menu =
 /*#__PURE__*/
-function (_React$Component3) {
-  _inherits(Menu, _React$Component3);
+function (_React$Component4) {
+  _inherits(Menu, _React$Component4);
 
   function Menu() {
-    var _getPrototypeOf3;
+    var _getPrototypeOf4;
 
-    var _this3;
+    var _this4;
 
     _classCallCheck(this, Menu);
 
-    for (var _len2 = arguments.length, args = new Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-      args[_key2] = arguments[_key2];
+    for (var _len3 = arguments.length, args = new Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+      args[_key3] = arguments[_key3];
     }
 
-    _this3 = _possibleConstructorReturn(this, (_getPrototypeOf3 = _getPrototypeOf(Menu)).call.apply(_getPrototypeOf3, [this].concat(args)));
+    _this4 = _possibleConstructorReturn(this, (_getPrototypeOf4 = _getPrototypeOf(Menu)).call.apply(_getPrototypeOf4, [this].concat(args)));
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this3)), "close", _react.default.createRef());
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this4)), "state", {
+      visible: false
+    });
 
-    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this3)), "onClose", function () {});
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this4)), "close", _react.default.createRef());
 
-    return _this3;
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this4)), "menu", _react.default.createRef());
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this4)), "onTransitionEnd", function (e) {
+      if (e.propertyName === "right" || e.propertyName === "left") {
+        var style = getComputedStyle(_this4.menu.current);
+        var value = style[e.propertyName];
+
+        _this4.setState({
+          visible: !value.startsWith("-")
+        });
+      }
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this4)), "onClose", function () {
+      if (_this4.props.onClose) {
+        _this4.props.onClose();
+      }
+    });
+
+    return _this4;
   }
 
   _createClass(Menu, [{
@@ -37695,23 +37754,25 @@ function (_React$Component3) {
     value: function componentDidMount() {
       var setCloseElement = this.props.setCloseElement;
       setCloseElement(this.close);
+      this.menu.current.addEventListener("transitionend", this.onTransitionEnd, false);
     }
   }, {
     key: "render",
     value: function render() {
-      var _this$props = this.props,
-          children = _this$props.children,
-          width = _this$props.width,
-          menuPosition = _this$props.menuPosition,
-          Heading = _this$props.Heading,
-          setCloseElement = _this$props.setCloseElement;
+      var _this$props2 = this.props,
+          children = _this$props2.children,
+          width = _this$props2.width,
+          menuPosition = _this$props2.menuPosition,
+          Heading = _this$props2.Heading;
       return _react.default.createElement(MainMenu, {
         id: "main-menu",
         className: "main-menu",
         role: "navigation",
-        "aria-expanded": false,
+        "aria-expanded": "false",
+        "aria-hidden": !this.state.visible,
         "aria-label": "Main menu",
-        width: "90%"
+        width: width,
+        ref: this.menu
       }, _react.default.createElement(Row, {
         menuPosition: menuPosition
       }, _react.default.createElement("a", {
@@ -37787,7 +37848,7 @@ var Example = function Example() {
     return _react.default.createElement(_react.default.Fragment, null, _react.default.createElement(_reactFlyoutMenu.HamburgerButton, {
       setToggleElement: setToggleElement,
       closeElement: closeElement
-    }), _react.default.createElement(_reactFlyoutMenu.Menu, {
+    }), _react.default.createElement("p", null, "Proident amet culpa dolor nisi et in do magna reprehenderit qui cupidatat ad amet. Aliquip consequat deserunt dolore anim sunt laboris nostrud reprehenderit cillum esse pariatur esse officia. Et sint labore velit ad."), _react.default.createElement("p", null, "Nulla proident ullamco aliquip est duis culpa cillum cillum ex. Veniam labore exercitation ipsum elit velit reprehenderit ea cupidatat do. Eiusmod elit labore tempor sint sint dolore minim."), _react.default.createElement("p", null, "Dolor duis pariatur dolore sint adipisicing veniam. Lorem fugiat consectetur quis excepteur ad quis commodo quis minim quis aute et velit. Eiusmod laboris laborum magna adipisicing. Veniam exercitation do velit ipsum do consectetur. Minim voluptate qui do adipisicing. Consequat laboris veniam ea aliqua eu minim."), _react.default.createElement("p", null, "Sunt minim id consequat deserunt ea aute laborum eiusmod. Est velit duis ut incididunt voluptate exercitation do velit cillum pariatur velit cupidatat in aliqua. Duis anim ex laborum quis ullamco fugiat amet minim magna non. Sint adipisicing adipisicing laboris eu eiusmod incididunt id laboris labore. Sit tempor id exercitation velit cupidatat quis cillum cupidatat nulla. Quis nostrud cupidatat tempor Lorem qui ex esse proident sint labore Lorem dolore. Aliquip amet ut sint quis amet eiusmod."), _react.default.createElement("p", null, "Nulla nulla dolor est quis commodo est fugiat non adipisicing dolor dolor. Eu magna exercitation Lorem ea occaecat elit cillum reprehenderit incididunt Lorem sit deserunt in adipisicing. Id culpa dolor ex culpa. Et laborum magna incididunt tempor laboris do qui laboris cillum magna ex quis. Id voluptate magna magna ullamco mollit ullamco et ex mollit eu qui ea in minim. Dolor quis ex exercitation sit sit magna. Cupidatat et labore ipsum consequat nulla sint in exercitation et."), _react.default.createElement(_reactFlyoutMenu.Menu, {
       setCloseElement: setCloseElement,
       toggleElement: toggleElement
     }, _react.default.createElement(_reactFlyoutMenu.NavList, null, _react.default.createElement(_reactFlyoutMenu.NavListItem, null, _react.default.createElement("a", {
@@ -37847,7 +37908,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57570" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61174" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
