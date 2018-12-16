@@ -65,7 +65,9 @@ const ToggleButton = styled.a`
   font-size: 1em;
   color: #333;
 
-  &:hover,
+  &:hover {
+    color: #555;
+  }
   &:focus {
     color: #c00;
   }
@@ -88,7 +90,6 @@ const MainMenu = styled.nav`
     list-style: none;
     margin: 0;
     padding: 2.5em 0 0;
-    min-height: 100%;
     width: 100%;
   }
 
@@ -168,28 +169,42 @@ const ReaderHidden = ({ children }) => (
   <span aria-hidden="true">{children}</span>
 );
 
-export const HamburgerButton = React.forwardRef(({ closeElement }, ref) => (
-  <ToggleButton
-    href="#main-menu"
-    className="menu-toggle"
-    role="button"
-    id="main-menu-toggle"
-    aria-expanded="false"
-    aria-controls="main-menu"
-    aria-label="Open main menu"
-    ref={ref}
-    onClick={() => {
-      // TODO: Revisit this. Basically saying wait til the
-      // menu is visible and focus it
-      setTimeout(() => closeElement.current.focus(), 300);
-    }}
-  >
-    <ReaderHidden>
-      <Bars />
-    </ReaderHidden>
-    <VisuallyHidden>Open Menu</VisuallyHidden>
-  </ToggleButton>
-));
+export class HamburgerButton extends React.Component {
+  toggle = React.createRef();
+
+  componentDidMount() {
+    const { setToggleElement } = this.props;
+
+    setToggleElement(this.toggle);
+  }
+
+  render() {
+    const { closeElement, onClick } = this.props;
+    return (
+      <ToggleButton
+        href="#main-menu"
+        className="menu-toggle"
+        role="button"
+        id="main-menu-toggle"
+        aria-expanded="false"
+        aria-controls="main-menu"
+        aria-label="Open main menu"
+        ref={this.toggle}
+        onClick={() => {
+          onClick && onClick();
+          // TODO: Revisit this. Basically saying wait til the
+          // menu is visible and focus it
+          setTimeout(() => closeElement.current.focus(), 300);
+        }}
+      >
+        <ReaderHidden>
+          <Bars />
+        </ReaderHidden>
+        <VisuallyHidden>Open Menu</VisuallyHidden>
+      </ToggleButton>
+    );
+  }
+}
 
 export const NavList = styled.ul``;
 export const NavListItem = styled.li``;
@@ -200,7 +215,9 @@ export const MenuPositions = {
 };
 
 export class Menu extends React.Component {
+  state = { visible: false };
   close = React.createRef();
+  menu = React.createRef();
 
   static defaultProps = {
     width: "90%",
@@ -216,25 +233,41 @@ export class Menu extends React.Component {
     const { setCloseElement } = this.props;
 
     setCloseElement(this.close);
+    this.menu.current.addEventListener(
+      "transitionend",
+      this.onTransitionEnd,
+      false
+    );
   }
-  onClose = () => {};
+
+  onTransitionEnd = e => {
+    if (e.propertyName === "right" || e.propertyName === "left") {
+      const style = getComputedStyle(this.menu.current);
+
+      const value = style[e.propertyName];
+      this.setState({ visible: !value.startsWith("-") });
+    }
+  };
+
+  onClose = () => {
+    if (this.props.onClose) {
+      this.props.onClose();
+    }
+  };
+
   render() {
-    const {
-      children,
-      width,
-      menuPosition,
-      Heading,
-      setCloseElement
-    } = this.props;
+    const { children, width, menuPosition, Heading } = this.props;
 
     return (
       <MainMenu
         id="main-menu"
         className="main-menu"
         role="navigation"
-        aria-expanded={false}
+        aria-expanded="false"
+        aria-hidden={!this.state.visible}
         aria-label="Main menu"
-        width="90%"
+        width={width}
+        ref={this.menu}
       >
         <Row menuPosition={menuPosition}>
           <a
