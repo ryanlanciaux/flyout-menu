@@ -6,7 +6,8 @@ import {
   NavList,
   NavListItem,
   MenuProvider,
-  MenuConsumer
+  MenuConsumer,
+  Backdrop
 } from "react-flyout-menu";
 
 const Example = () => (
@@ -48,6 +49,7 @@ const Example = () => (
                 </NavListItem>
               </NavList>
             </Menu>
+            <Backdrop />
           </React.Fragment>
         );
       }}

@@ -44,8 +44,8 @@ export class MenuConsumer extends React.Component {
   }
 }
 
-const Bars = () => <FontAwesomeIcon icon={faBars} />;
-const Close = () => <FontAwesomeIcon icon={faTimes} />;
+const Bars = () => <FontAwesomeIcon icon={faBars} size="2x" />;
+const Close = () => <FontAwesomeIcon icon={faTimes} size="2x" />;
 
 const VisuallyHidden = styled.span`
   position: absolute;
@@ -133,7 +133,7 @@ const MainMenu = styled.nav`
     z-index: 1000;
   }
 
-  & + .backdrop,
+  &:target + .backdrop,
   &[aria-expanded="true"] + .backdrop {
     position: absolute;
     display: block;
