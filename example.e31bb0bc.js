@@ -37476,7 +37476,7 @@ function _templateObject4() {
 }
 
 function _templateObject3() {
-  var data = _taggedTemplateLiteral(["\n  position: absolute;\n  right: calc(-1 * ", ");\n  top: 0;\n  height: 100%;\n  overflow-y: scroll;\n  overflow-x: visible;\n  transition: right 0.3s ease, box-shadow 0.3s ease;\n  z-index: 999;\n  width: ", ";\n  background: #1a1a1a;\n\n  & ul {\n    list-style: none;\n    margin: 0;\n    padding: 2.5em 0 0;\n    min-height: 100%;\n    width: 100%;\n  }\n\n  & a {\n    display: block;\n    padding: 0.75em 15px;\n    line-height: 1em;\n    font-size: 1em;\n    color: #fff;\n    text-decoration: none;\n  }\n\n  & li:first-child a {\n    border-top: 1px solid #383838;\n  }\n\n  & a:hover,\n  & a:focus {\n    background: #333;\n    text-decoration: underline;\n  }\n\n  & .menu-close {\n    align-self: center;\n  }\n\n  &:target,\n  &[aria-expanded=\"true\"] {\n    right: 0;\n    outline: none;\n    box-shadow: 3px 0 12px rgba(0, 0, 0, 0.25);\n  }\n\n  &:target .menu-close,\n  &[aria-expanded=\"true\"] .menu-close {\n    z-index: 1001;\n  }\n\n  &:target ul,\n  &[aria-expanded=\"true\"] ul {\n    position: relative;\n    z-index: 1000;\n  }\n\n  & + .backdrop,\n  &[aria-expanded=\"true\"] + .backdrop {\n    position: absolute;\n    display: block;\n    content: \"\";\n    right: 0;\n    top: 0;\n    width: 100%;\n    height: 100%;\n    z-index: 998;\n    background: #000;\n    background: rgba(0, 0, 0, 0.85);\n    cursor: default;\n  }\n\n  @supports (position: fixed) {\n    &,\n    &:target + .backdrop,\n    &[aria-expanded=\"true\"] + .backdrop {\n      position: fixed;\n    }\n  }\n"]);
+  var data = _taggedTemplateLiteral(["\n  position: absolute;\n  right: calc(-1 * ", ");\n  top: 0;\n  height: 100%;\n  overflow-y: scroll;\n  overflow-x: visible;\n  transition: right 0.3s ease, box-shadow 0.3s ease;\n  z-index: 999;\n  width: ", ";\n  background: #1a1a1a;\n\n  & ul {\n    list-style: none;\n    margin: 0;\n    padding: 2.5em 0 0;\n    min-height: 100%;\n    width: 100%;\n  }\n\n  & a {\n    display: block;\n    padding: 0.75em 15px;\n    line-height: 1em;\n    font-size: 1em;\n    color: #fff;\n    text-decoration: none;\n  }\n\n  & li:first-child a {\n    border-top: 1px solid #383838;\n  }\n\n  & a:hover,\n  & a:focus {\n    background: #333;\n    text-decoration: underline;\n  }\n\n  & .menu-close {\n    align-self: center;\n  }\n\n  &:target,\n  &[aria-expanded=\"true\"] {\n    right: 0;\n    outline: none;\n    box-shadow: 3px 0 12px rgba(0, 0, 0, 0.25);\n  }\n\n  &:target .menu-close,\n  &[aria-expanded=\"true\"] .menu-close {\n    z-index: 1001;\n  }\n\n  &:target ul,\n  &[aria-expanded=\"true\"] ul {\n    position: relative;\n    z-index: 1000;\n  }\n\n  &:target + .backdrop,\n  &[aria-expanded=\"true\"] + .backdrop {\n    position: absolute;\n    display: block;\n    content: \"\";\n    right: 0;\n    top: 0;\n    width: 100%;\n    height: 100%;\n    z-index: 998;\n    background: #000;\n    background: rgba(0, 0, 0, 0.85);\n    cursor: default;\n  }\n\n  @supports (position: fixed) {\n    &,\n    &:target + .backdrop,\n    &[aria-expanded=\"true\"] + .backdrop {\n      position: fixed;\n    }\n  }\n"]);
 
   _templateObject3 = function _templateObject3() {
     return data;
@@ -37595,13 +37595,15 @@ exports.MenuConsumer = MenuConsumer;
 
 var Bars = function Bars() {
   return _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
-    icon: _freeSolidSvgIcons.faBars
+    icon: _freeSolidSvgIcons.faBars,
+    size: "2x"
   });
 };
 
 var Close = function Close() {
   return _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
-    icon: _freeSolidSvgIcons.faTimes
+    icon: _freeSolidSvgIcons.faTimes,
+    size: "2x"
   });
 };
 
@@ -37800,7 +37802,7 @@ var Example = function Example() {
       href: "#"
     }, "Four Point Two")), _react.default.createElement(_reactFlyoutMenu.NavListItem, null, _react.default.createElement("a", {
       href: "#"
-    }, "Four Point Three")))))));
+    }, "Four Point Three")))))), _react.default.createElement(_reactFlyoutMenu.Backdrop, null));
   }));
 };
 
@@ -37845,7 +37847,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "64488" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57570" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
