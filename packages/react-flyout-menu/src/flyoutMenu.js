@@ -44,8 +44,8 @@ export class MenuConsumer extends React.Component {
   }
 }
 
-const Bars = () => <FontAwesomeIcon icon={faBars} size="2x" />;
-const Close = () => <FontAwesomeIcon icon={faTimes} size="2x" />;
+const Bars = ({ size }) => <FontAwesomeIcon icon={faBars} size={size} />;
+const Close = ({ size }) => <FontAwesomeIcon icon={faTimes} size={size} />;
 
 const VisuallyHidden = styled.span`
   position: absolute;
@@ -179,7 +179,7 @@ export class HamburgerButton extends React.Component {
   }
 
   render() {
-    const { closeElement, onClick } = this.props;
+    const { closeElement, onClick, iconSize } = this.props;
     return (
       <ToggleButton
         href="#main-menu"
@@ -198,7 +198,7 @@ export class HamburgerButton extends React.Component {
         }}
       >
         <ReaderHidden>
-          <Bars />
+          <Bars size={iconSize} />
         </ReaderHidden>
         <VisuallyHidden>Open Menu</VisuallyHidden>
       </ToggleButton>
@@ -256,7 +256,7 @@ export class Menu extends React.Component {
   };
 
   render() {
-    const { children, width, menuPosition, Heading } = this.props;
+    const { children, width, menuPosition, Heading, iconSize } = this.props;
 
     return (
       <MainMenu
@@ -282,7 +282,7 @@ export class Menu extends React.Component {
             ref={this.close}
           >
             <ReaderHidden>
-              <Close />
+              <Close size={iconSize} />
             </ReaderHidden>
             <VisuallyHidden>Close menu</VisuallyHidden>
           </a>
