@@ -37593,17 +37593,19 @@ function (_React$Component2) {
 
 exports.MenuConsumer = MenuConsumer;
 
-var Bars = function Bars() {
+var Bars = function Bars(_ref2) {
+  var size = _ref2.size;
   return _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
     icon: _freeSolidSvgIcons.faBars,
-    size: "2x"
+    size: size
   });
 };
 
-var Close = function Close() {
+var Close = function Close(_ref3) {
+  var size = _ref3.size;
   return _react.default.createElement(_reactFontawesome.FontAwesomeIcon, {
     icon: _freeSolidSvgIcons.faTimes,
-    size: "2x"
+    size: size
   });
 };
 
@@ -37622,8 +37624,8 @@ var Row = _styledComponents.default.div(_templateObject4(), function (props) {
   return props.menuPosition !== MenuPositions.left ? "row" : "row-reverse";
 });
 
-var ReaderHidden = function ReaderHidden(_ref2) {
-  var children = _ref2.children;
+var ReaderHidden = function ReaderHidden(_ref4) {
+  var children = _ref4.children;
   return _react.default.createElement("span", {
     "aria-hidden": "true"
   }, children);
@@ -37663,7 +37665,8 @@ function (_React$Component3) {
     value: function render() {
       var _this$props = this.props,
           closeElement = _this$props.closeElement,
-          _onClick = _this$props.onClick;
+          _onClick = _this$props.onClick,
+          iconSize = _this$props.iconSize;
       return _react.default.createElement(ToggleButton, {
         href: "#main-menu",
         className: "menu-toggle",
@@ -37681,7 +37684,9 @@ function (_React$Component3) {
             return closeElement.current.focus();
           }, 300);
         }
-      }, _react.default.createElement(ReaderHidden, null, _react.default.createElement(Bars, null)), _react.default.createElement(VisuallyHidden, null, "Open Menu"));
+      }, _react.default.createElement(ReaderHidden, null, _react.default.createElement(Bars, {
+        size: iconSize
+      })), _react.default.createElement(VisuallyHidden, null, "Open Menu"));
     }
   }]);
 
@@ -37763,7 +37768,8 @@ function (_React$Component4) {
           children = _this$props2.children,
           width = _this$props2.width,
           menuPosition = _this$props2.menuPosition,
-          Heading = _this$props2.Heading;
+          Heading = _this$props2.Heading,
+          iconSize = _this$props2.iconSize;
       return _react.default.createElement(MainMenu, {
         id: "main-menu",
         className: "main-menu",
@@ -37785,7 +37791,9 @@ function (_React$Component4) {
         "aria-label": "Close main menu",
         onClick: this.onClose,
         ref: this.close
-      }, _react.default.createElement(ReaderHidden, null, _react.default.createElement(Close, null)), _react.default.createElement(VisuallyHidden, null, "Close menu")), _react.default.createElement(Heading, null)), children);
+      }, _react.default.createElement(ReaderHidden, null, _react.default.createElement(Close, {
+        size: iconSize
+      })), _react.default.createElement(VisuallyHidden, null, "Close menu")), _react.default.createElement(Heading, null)), children);
     }
   }]);
 
@@ -37908,7 +37916,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61174" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "57983" + '/');
 
   ws.onmessage = function (event) {
     var data = JSON.parse(event.data);
