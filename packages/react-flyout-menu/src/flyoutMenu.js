@@ -86,6 +86,10 @@ const MainMenu = styled.nav`
   width: ${props => props.width};
   background: #1a1a1a;
 
+  & * {
+    display: ${props => (props.visible ? "block" : "none")};
+  }
+
   & ul {
     list-style: none;
     margin: 0;
@@ -194,7 +198,7 @@ export class HamburgerButton extends React.Component {
           onClick && onClick();
           // TODO: Revisit this. Basically saying wait til the
           // menu is visible and focus it
-          setTimeout(() => closeElement.current.focus(), 300);
+          setTimeout(() => closeElement.current.focus(), 400);
         }}
       >
         <ReaderHidden>
@@ -214,6 +218,8 @@ export const MenuPositions = {
   right: "right"
 };
 
+const TAB = 9;
+const ESCAPE = 27;
 export class Menu extends React.Component {
   state = { visible: false };
   close = React.createRef();
@@ -238,14 +244,62 @@ export class Menu extends React.Component {
       this.onTransitionEnd,
       false
     );
+
+    this.focusElements = this.menu.current.querySelectorAll(
+      'a[href], button, textarea, input[type="text"], input[type="radio"], input[type="checkbox"], select'
+    );
+
+    window.addEventListener("keydown", this.onKeydown);
   }
+
+  componentWillUnmount() {
+    window.removeEventListener("keydown", this.onKeydown);
+  }
+
+  onKeydown = e => {
+    const first = this.focusElements[0];
+    const last = this.focusElements[this.focusElements.length - 1];
+
+    const isTab = e.key === "Tab" || e.keyCode === TAB;
+    const isShiftTab = e.shiftKey && isTab;
+    const isEscape = e.key === "Escape" || e.keyCode === ESCAPE;
+    // if this nav is not visible we don't want to trap focus
+    if (!this.state.visible) {
+      return;
+    }
+
+    if (isShiftTab) {
+      if (document.activeElement === first) {
+        last.focus();
+        e.preventDefault();
+        return;
+      }
+    }
+
+    if (isTab) {
+      if (document.activeElement === last) {
+        first.focus();
+        e.preventDefault();
+        return;
+      }
+    }
+
+    if (isEscape) {
+      location.hash = "#main-menu-toggle";
+    }
+  };
 
   onTransitionEnd = e => {
     if (e.propertyName === "right" || e.propertyName === "left") {
       const style = getComputedStyle(this.menu.current);
 
       const value = style[e.propertyName];
-      this.setState({ visible: !value.startsWith("-") });
+      const visible = !value.startsWith("-");
+      this.setState({ visible });
+
+      if (!visible) {
+        this.onClose();
+      }
     }
   };
 
@@ -265,6 +319,8 @@ export class Menu extends React.Component {
         role="navigation"
         aria-expanded="false"
         aria-hidden={!this.state.visible}
+        tabIndex={this.state.visible ? 0 : -1}
+        visible={this.state.visible}
         aria-label="Main menu"
         width={width}
         ref={this.menu}
@@ -278,10 +334,10 @@ export class Menu extends React.Component {
             aria-expanded="false"
             aria-controls="main-menu"
             aria-label="Close main menu"
-            onClick={this.onClose}
             ref={this.close}
+            tabIndex={this.state.visible ? 0 : -1}
           >
-            <ReaderHidden>
+            <ReaderHidden visible={this.state.visible}>
               <Close size={iconSize} />
             </ReaderHidden>
             <VisuallyHidden>Close menu</VisuallyHidden>
