@@ -81,7 +81,7 @@ const MainMenu = styled.nav`
   height: 100%;
   overflow-y: scroll;
   overflow-x: visible;
-  transition: right 0.3s ease, box-shadow 0.3s ease;
+  transition: right 0.2s ease, box-shadow 0.1s ease;
   z-index: 999;
   width: ${props => props.width};
   background: #1a1a1a;
@@ -198,7 +198,7 @@ export class HamburgerButton extends React.Component {
           onClick && onClick();
           // TODO: Revisit this. Basically saying wait til the
           // menu is visible and focus it
-          setTimeout(() => closeElement.current.focus(), 400);
+          setTimeout(() => closeElement.current.focus(), 600);
         }}
       >
         <ReaderHidden>
