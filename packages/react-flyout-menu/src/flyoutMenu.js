@@ -87,7 +87,12 @@ const MainMenu = styled.nav`
   background: #1a1a1a;
 
   & * {
-    display: ${props => (props.visible ? "block" : "none")};
+    display: none;
+  }
+
+  &:target *,
+  &[aria-expanded="true"] * {
+    display: block;
   }
 
   & ul {
@@ -153,6 +158,16 @@ const MainMenu = styled.nav`
     cursor: default;
   }
 
+  & .row {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  & .row.left {
+    flex-direction: row-reverse;
+  }
+
   @supports (position: fixed) {
     &,
     &:target + .backdrop,
@@ -164,9 +179,6 @@ const MainMenu = styled.nav`
 
 const Row = styled.div`
   display: flex;
-  flex-direction: ${props =>
-    props.menuPosition !== MenuPositions.left ? "row" : "row-reverse"};
-  justify-content: space-between;
 `;
 
 const ReaderHidden = ({ children }) => (
@@ -325,7 +337,7 @@ export class Menu extends React.Component {
         width={width}
         ref={this.menu}
       >
-        <Row menuPosition={menuPosition}>
+        <Row className={`row ${menuPosition}`} menuPosition={menuPosition}>
           <a
             href="#main-menu-toggle"
             className="menu-close"
