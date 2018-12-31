@@ -1,4 +1,4 @@
-import React from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -15,6 +15,11 @@ export class MenuProvider extends React.Component {
     },
     setToggleElement: toggleElement => {
       this.setState({ toggleElement });
+    },
+    onClose: () => {
+      if (this.props.onClose) {
+        this.props.onClose();
+      }
     }
   };
 
@@ -78,10 +83,11 @@ const MainMenu = styled.nav`
   position: absolute;
   right: calc(-1 * ${props => props.width});
   top: 0;
+  opacity: 0;
   height: 100%;
   overflow-y: scroll;
   overflow-x: visible;
-  transition: right 0.2s ease, box-shadow 0.1s ease;
+  transition: right 0.2s ease, opacity 0.2s ease;
   z-index: 999;
   width: ${props => props.width};
   background: #1a1a1a;
@@ -128,6 +134,7 @@ const MainMenu = styled.nav`
   &:target,
   &[aria-expanded="true"] {
     right: 0;
+    opacity: 1;
     outline: none;
     box-shadow: 3px 0 12px rgba(0, 0, 0, 0.25);
   }
@@ -232,7 +239,14 @@ export const MenuPositions = {
 
 const TAB = 9;
 const ESCAPE = 27;
-export class Menu extends React.Component {
+
+export const Menu = props => (
+  <menuContext.Consumer>
+    {({ onClose }) => <InnerMenu {...props} onClose={onClose} />}
+  </menuContext.Consumer>
+);
+
+class InnerMenu extends React.Component {
   state = { visible: false };
   close = React.createRef();
   menu = React.createRef();
@@ -302,22 +316,17 @@ export class Menu extends React.Component {
   };
 
   onTransitionEnd = e => {
-    if (e.propertyName === "right" || e.propertyName === "left") {
+    const { onClose } = this.props;
+    if (e.propertyName === "opacity") {
       const style = getComputedStyle(this.menu.current);
 
       const value = style[e.propertyName];
-      const visible = !value.startsWith("-");
+      const visible = value !== "0";
       this.setState({ visible });
 
       if (!visible) {
-        this.onClose();
+        onClose();
       }
-    }
-  };
-
-  onClose = () => {
-    if (this.props.onClose) {
-      this.props.onClose();
     }
   };
 
