@@ -202,9 +202,10 @@ export class HamburgerButton extends React.Component {
   }
 
   render() {
-    const { closeElement, onClick, iconSize } = this.props;
+    const { closeElement, onClick, iconSize, as, ...rest } = this.props;
     return (
       <ToggleButton
+        as={as}
         href="#main-menu"
         className="menu-toggle"
         role="button"
@@ -219,6 +220,7 @@ export class HamburgerButton extends React.Component {
           // menu is visible and focus it
           setTimeout(() => closeElement.current.focus(), 600);
         }}
+        {...rest}
       >
         <ReaderHidden>
           <Bars size={iconSize} />
